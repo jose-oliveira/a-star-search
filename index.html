@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link href="styles/styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="col-left">
+      <div id="options">
+        <h1>A* Search</h1>
+        <ul class="info">
+          <li>Click somewhere in the box the create a point. The first point is the beggining of the path.</li>
+          <li>Mouse over from one point to another to create a connection.</li>
+          <li>Last point added to a connection can't be the beggining of a new connection(for now).</li>
+          <li>Click "Trace Path" to run A* search on created graph.</li>
+          <li>Usability fixes are coming. Maybe. Eventually.</li>
+        </ul>
+        <input type="button" id="tracePath" value="Trace Path" />
+      </div>
+    </div>
+    <div id="path">
+      <canvas width="500" height="500"></canvas>
+    </div>
+    <script src="scripts/CanvasUtils.js"></script>
+    <script src="scripts/Point.js"></script>
+    <script src="scripts/AStarSearch.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
