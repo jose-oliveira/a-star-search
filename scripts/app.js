@@ -40,7 +40,7 @@
   function endDrag(){
     isDrag = false;
     connectionPointFrom = false;
-    Point.drawPointsAndClearCanvas(points);
+    Point.clearCanvasAndDrawPoints(points);
   }
 
   function setConnection(e){
@@ -75,7 +75,7 @@
       }
 
     }else{
-      Point.drawPointsAndClearCanvas(points);
+      Point.clearCanvasAndDrawPoints(points);
       connectionPointFrom.drawConnection(coordinates);
     }
   }

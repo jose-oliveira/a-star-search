@@ -16,7 +16,7 @@ class Point{
      }
  }
 
- static drawPointsAndClearCanvas (points){
+ static clearCanvasAndDrawPoints (points){
    CanvasUtils.clearCanvas();
    Point.drawPoints(points);
  }

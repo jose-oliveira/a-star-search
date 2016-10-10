@@ -55,7 +55,7 @@ class AStarSearch{
 
   animateNodesDraw (node){
     this.queueTimeOut([
-      Point.drawPoints.bind(this.points),
+      Point.drawPoints.bind(this, this.points),
       this.drawPathFromNode.bind(this, node)
     ]);
 
