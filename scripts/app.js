@@ -1,13 +1,12 @@
 (function(document) {
 
-  var search, connectionPointFrom = null, points = {};
+  var search, connectionPointFrom = null, points = {}, isDrag;
 
-  const POINTRADIUS = 5;
-  const canvas = document.querySelector("#path canvas");
-
+  CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('dblclick', addPoint);
+  CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mousedown', startDrag);
+  CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mouseup', endDrag);
+  CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mousemove', setConnection);
   document.querySelector("#tracePath").addEventListener('click', runSearch);
-  canvas.addEventListener('click', addPoint);
-  canvas.addEventListener('mousemove', setConnection);
 
   function addPoint(e){
     const x = e.offsetX, y = e.offsetY;
@@ -32,7 +31,20 @@
     point.draw();
   }
 
+  function startDrag(){
+    isDrag = true;
+  }
+
+  function endDrag(){
+    isDrag = false;
+    connectionPointFrom = false;
+  }
+
   function setConnection(e){
+    if(!isDrag){
+      return;
+    }
+
     if(!connectionPointFrom){
       setConnectionPointFrom(e);
       return;
@@ -67,11 +79,6 @@
       "x" : x,
       "y" : y
     });
-
-    //Makes sure the beginning point of this connection isn't the last point added.
-    if(connectionPointFrom && connectionPointFrom.isEnd){
-      connectionPointFrom = null;
-    }
   }
 
   function setNewEnd(connectionPointTo){
@@ -88,7 +95,7 @@
   function getPointFromCoordinates(p){
     for(var pointIndex in points){
       var point = points[pointIndex];
-      if(point.distance(p) <= POINTRADIUS){
+      if(point.distance(p) <= CanvasUtils.CANVASCONSTS.POINTRADIUS){
         return point;
       }
     }
