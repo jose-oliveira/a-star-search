@@ -11,4 +11,8 @@ class CanvasUtils{
       ANIMTIME: 1000
     };
   }
+
+  static clearCanvas(){
+    CanvasUtils.CANVASCONSTS.CTX.clearRect(0, 0, CanvasUtils.CANVASCONSTS.CANVAS.width, CanvasUtils.CANVASCONSTS.CANVAS.height);
+  }
 }

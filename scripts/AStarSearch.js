@@ -2,7 +2,7 @@ class AStarSearch{
 
   constructor() {
     this.animationInterval = CanvasUtils.CANVASCONSTS.ANIMTIME;
-    CanvasUtils.CANVASCONSTS.CTX.clearRect(0, 0, CanvasUtils.CANVASCONSTS.CANVAS.width, CanvasUtils.CANVASCONSTS.CANVAS.height);
+    CanvasUtils.clearCanvas();
   }
 
   getPoints (){
