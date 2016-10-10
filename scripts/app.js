@@ -6,7 +6,9 @@
   CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mousedown', startDrag);
   CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mouseup', endDrag);
   CanvasUtils.CANVASCONSTS.CANVAS.addEventListener('mousemove', setConnection);
+
   document.querySelector("#tracePath").addEventListener('click', runSearch);
+  document.querySelector("#clear").addEventListener('click', clear);
 
   function addPoint(e){
     const x = e.offsetX, y = e.offsetY;
@@ -38,6 +40,7 @@
   function endDrag(){
     isDrag = false;
     connectionPointFrom = false;
+    Point.drawPointsAndClearCanvas(points);
   }
 
   function setConnection(e){
@@ -51,10 +54,11 @@
     }
 
     const x = e.offsetX, y = e.offsetY;
-    const connectionPointTo = getPointFromCoordinates({
+    var coordinates = {
       "x" : x,
       "y" : y
-    });
+    };
+    const connectionPointTo = getPointFromCoordinates(coordinates);
 
     if(connectionPointTo){
 
@@ -70,6 +74,9 @@
         setNewEnd(connectionPointTo);
       }
 
+    }else{
+      Point.drawPointsAndClearCanvas(points);
+      connectionPointFrom.drawConnection(coordinates);
     }
   }
 
@@ -117,5 +124,10 @@
     //count of points don't mess up.
     delete points.begin;
     delete points.end;
+  }
+
+  function clear(){
+    points = {};
+    CanvasUtils.clearCanvas();
   }
 })(document);

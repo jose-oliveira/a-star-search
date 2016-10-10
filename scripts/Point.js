@@ -6,6 +6,21 @@ class Point{
     }
   }
 
+ static drawPoints (points){
+    CanvasUtils.initPathDraw(CanvasUtils.CANVASCONSTS.INITIALCOLOR);
+
+     for (var pointID in points){
+       const point = points[pointID];
+       point.draw();
+       point.drawConnections(points);
+     }
+ }
+
+ static drawPointsAndClearCanvas (points){
+   CanvasUtils.clearCanvas();
+   Point.drawPoints(points);
+ }
+
  draw (){
    CanvasUtils.CANVASCONSTS.CTX.beginPath();
    CanvasUtils.CANVASCONSTS.CTX.arc(this.x, this.y, CanvasUtils.CANVASCONSTS.POINTRADIUS, 0, 2 * Math.PI);

@@ -12,7 +12,7 @@ class AStarSearch{
   setPoints (points) {
     this.points = points;
     this.processPoints();
-    this.drawPoints();
+    Point.drawPoints(points);
   }
 
   processPoints () {
@@ -40,20 +40,9 @@ class AStarSearch{
     }
   }
 
-  drawPoints (){
-
-    this.initPathDraw(CanvasUtils.CANVASCONSTS.INITIALCOLOR);
-
-    for (var pointID in this.points){
-      const point = this.points[pointID];
-      point.draw();
-      point.drawConnections(this.points);
-    }
-  }
-
   drawPathFromNode (node){
 
-    this.initPathDraw(CanvasUtils.CANVASCONSTS.VISITEDCOLOR);
+    CanvasUtils.initPathDraw(CanvasUtils.CANVASCONSTS.VISITEDCOLOR);
 
     while(node){
       node.point.draw();
@@ -64,16 +53,9 @@ class AStarSearch{
     }
   }
 
-  initPathDraw (color){
-    CanvasUtils.CANVASCONSTS.CTX.beginPath();
-
-    CanvasUtils.CANVASCONSTS.CTX.fillStyle = color;
-    CanvasUtils.CANVASCONSTS.CTX.strokeStyle = color;
-  }
-
   animateNodesDraw (node){
     this.queueTimeOut([
-      this.drawPoints.bind(this),
+      Point.drawPoints.bind(this.points),
       this.drawPathFromNode.bind(this, node)
     ]);
 

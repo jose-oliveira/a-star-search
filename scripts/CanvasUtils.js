@@ -15,4 +15,11 @@ class CanvasUtils{
   static clearCanvas(){
     CanvasUtils.CANVASCONSTS.CTX.clearRect(0, 0, CanvasUtils.CANVASCONSTS.CANVAS.width, CanvasUtils.CANVASCONSTS.CANVAS.height);
   }
+
+  static initPathDraw (color){
+    CanvasUtils.CANVASCONSTS.CTX.beginPath();
+
+    CanvasUtils.CANVASCONSTS.CTX.fillStyle = color;
+    CanvasUtils.CANVASCONSTS.CTX.strokeStyle = color;
+  }
 }
