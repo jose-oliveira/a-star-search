@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <link href="../assets/styles/styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="col-left">
+      <div id="options">
+        <h1>Linear regression</h1>
+        <ul class="info">
+          <li>Double click somewhere in the box the create a point.</li>
+          <li>Click "Trace Line" to show the line corresponding to the points.</li>
+        </ul>
+        <input type="button" id="traceLine" value="Trace Line" />
+        <input type="button" id="clear" value="Clear" />
+      </div>
+    </div>
+    <div id="main">
+      <canvas width="500" height="500"></canvas>
+    </div>
+    <script src="../common-scripts/CanvasUtils.js"></script>
+    <script src="../common-scripts/Point.js"></script>
+    <script src="scripts/LinearRegression.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
