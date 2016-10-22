@@ -1,7 +1,7 @@
 class CanvasUtils{
 
   static get CANVASCONSTS () {
-    const canvas = document.querySelector("#path canvas");
+    const canvas = document.querySelector("#main canvas");
     return {
       CANVAS: canvas,
       CTX: canvas.getContext("2d"),
