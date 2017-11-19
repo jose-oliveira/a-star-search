@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Linear filter: Edge detection</title>
+  </head>
+  <body>
+    <div id="controls">
+      <label for="filter">Select filter:</label>
+      <select id="filter">
+        <option value="simple" selected="selected">Simple</option>
+        <option value="sobel">Sobel</option>
+        <option value="prewitt">Prewitt</option>
+        <option value="kirsh">Kirsh</option>
+      </select>
+      <label for="selectImage">Select image</label>
+      <select id="selectImage">
+        <option value="img/sam.jpg" selected="selected">Sam</option>
+        <option value="img/jay.jpg">Jose face</option>
+        <option value="img/kny.jpg">Katrina in NYC</option>
+        <option value="img/chi.jpg">Chicago</option>
+        <option value="img/esb.jpg">Empire State Building</option>
+      </select>
+      <input type="button" id="apply" value="Apply filter on selected image."/>
+    </div>
+    <img id="image" width="500px" height="500px"/>
+    <canvas id="canvas"></canvas>
+    <script src="scripts/Array2DHelper.js"></script>
+    <script src="scripts/GreyScaleArrayHelper.js"></script>
+    <script src="scripts/Filter.js"></script>
+    <script src="scripts/LinearFilterEdgeDetector.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
