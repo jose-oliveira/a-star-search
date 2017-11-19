@@ -12,6 +12,7 @@ class LinearFilterEdgeDetector{
   }
 
   static getAllEdges(greyScaleArray, filter){
+    greyScaleArray = GreyScaleArrayHelper.applyGradient(greyScaleArray, GaussianFilter.gaussianFilter());
     var horizontalEdges = this.getHorizontalEdges(greyScaleArray, filter.horizontal);
     var verticalEdges = this.getVerticalEdges(greyScaleArray, filter.vertical);
     //Edge array equals the square root of the sum of the squares of the

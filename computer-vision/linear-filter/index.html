@@ -6,7 +6,9 @@
     <div id="controls">
       <label for="filter">Select filter:</label>
       <select id="filter">
-        <option value="simple" selected="selected">Simple</option>
+        <option value="grey" selected="selected">Grey Scale</option>
+        <option value="gaussian">Grey + Gaussian</option>
+        <option value="simple">Simple</option>
         <option value="sobel">Sobel</option>
         <option value="prewitt">Prewitt</option>
         <option value="kirsh">Kirsh</option>
@@ -21,10 +23,11 @@
       </select>
       <input type="button" id="apply" value="Apply filter on selected image."/>
     </div>
-    <img id="image" width="500px" height="500px"/>
+    <img id="image" width="600px" height="600px"/>
     <canvas id="canvas"></canvas>
     <script src="scripts/Array2DHelper.js"></script>
     <script src="scripts/GreyScaleArrayHelper.js"></script>
+    <script src="scripts/GaussianFilter.js"></script>
     <script src="scripts/Filter.js"></script>
     <script src="scripts/LinearFilterEdgeDetector.js"></script>
     <script src="scripts/app.js"></script>
