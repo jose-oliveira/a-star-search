@@ -1,44 +1,68 @@
 //@TODO Improve coding standards.
 window.onload = function() {
 
-  //@TODO Make this selectable and collect some benchmarks
-  //With image
-  loadImageAndApplyFilter();
-  document.querySelector("#apply").addEventListener('click', loadImageAndApplyFilter);
-/*
-  //With video
-  var video = document.querySelector("#videoElement");
-  document.querySelector("#apply").addEventListener('click', function(){
-    filterName = document.querySelector("#filter").value;
-  });
+  var videoElement = document.querySelector("#videoElement");
+  var webCamVideoHandler = new WebCamVideoHandler(videoElement);
 
-  startTimeout();
-  function startTimeout(){
-    setInterval(function(){
-      drawImageFilter(video);
-    }, 3000);
+  var imageElement = document.querySelector('#image');
+
+  var videoTimeout;
+
+  selectSourceAndApplyFilter();
+  document.querySelector("#apply").addEventListener('click', selectSourceAndApplyFilter);
+
+  function selectSourceAndApplyFilter(){
+    source = document.querySelector("#source");
+    switch (source.value) {
+      case 'video':
+        applyFilterToVideo();
+        break;
+      default: loadImageAndApplyFilter();
+
+    }
   }
-*/
+
   function loadImageAndApplyFilter(){
 
-    var image = document.getElementById('image');
+    hideElement(videoElement);
+    showElement(imageElement);
+
+    if(!videoElement.paused){
+      webCamVideoHandler.stop();
+      clearTimeout(videoTimeout);
+    }
+
     var selectImageSrc = document.querySelector("#selectImage").value;
-    if(selectImageSrc == image.getAttribute("src")){
-      drawImageFilter(image);
+    if(selectImageSrc == imageElement.getAttribute("src")){
+      drawImageFilter(imageElement);
       return;
     }
 
     var selectImage = new Image();
     selectImage.src = selectImageSrc;
     selectImage.onload = function(){
-        image.setAttribute("src", this.getAttribute("src"));
-        drawImageFilter(image);
+        imageElement.setAttribute("src", this.getAttribute("src"));
+        drawImageFilter(imageElement);
     };
+  }
+
+  function applyFilterToVideo(){
+
+    hideElement(imageElement);
+    showElement(videoElement);
+
+    if(videoElement.paused){
+      webCamVideoHandler.play();
+      videoTimeout = setInterval(function(){
+          drawImageFilter(videoElement);
+        }, 5000);
+    }
+    var filterName = document.querySelector("#filter").value;
   }
 
   function drawImageFilter(image){
 
-    var canvas = document.getElementById('canvas');
+    var canvas = document.querySelector('#canvas');
     var context = canvas.getContext('2d');
     canvas.width = image.width;
     canvas.height = image.height;
@@ -65,4 +89,13 @@ window.onload = function() {
         return LinearFilterEdgeDetector.getAllEdges(greyScaleArray, new Filter(filterName));
     }
   }
+
+  function hideElement(element){
+    element.style.display = "none";
+  }
+
+  function showElement(element){
+    element.style.display = "";
+  }
+
 }

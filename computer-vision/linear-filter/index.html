@@ -4,37 +4,50 @@
   </head>
   <body>
     <div id="controls">
-      <label for="filter">Select filter:</label>
-      <select id="filter">
-        <option value="grey" selected="selected">Grey Scale</option>
-        <option value="gaussian">Grey + Gaussian</option>
-        <option value="simple">Simple</option>
-        <option value="sobel">Sobel</option>
-        <option value="prewitt">Prewitt</option>
-        <option value="kirsh">Kirsh</option>
-      </select>
-      <label for="selectImage">Select image</label>
-      <select id="selectImage">
-        <option value="img/sam.jpg" selected="selected">Sam</option>
-        <option value="img/jay.jpg">Jose face</option>
-        <option value="img/kny.jpg">Katrina in NYC</option>
-        <option value="img/chi.jpg">Chicago</option>
-        <option value="img/esb.jpg">Empire State Building</option>
-        <option value="img/diane.jpg">Diane</option>
-      </select>
-      <input type="button" id="apply" value="Apply filter on selected image."/>
+
+      <div>
+        <label for="source">Source:</label>
+        <select id="source">
+          <option value="image" selected="selected">Image</option>
+          <option value="video">Video(very slow currently)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="filter">Select filter:</label>
+        <select id="filter">
+          <option value="grey" selected="selected">Grey Scale</option>
+          <option value="gaussian">Grey + Gaussian</option>
+          <option value="simple">Simple</option>
+          <option value="sobel">Sobel</option>
+          <option value="prewitt">Prewitt</option>
+          <option value="kirsh">Kirsh</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="selectImage">Select image</label>
+        <select id="selectImage">
+          <option value="img/sam.jpg" selected="selected">Sam</option>
+          <option value="img/jay.jpg">Jose face</option>
+          <option value="img/kny.jpg">Katrina in NYC</option>
+          <option value="img/chi.jpg">Chicago</option>
+          <option value="img/esb.jpg">Empire State Building</option>
+          <option value="img/diane.jpg">Diane</option>
+        </select>
+      </div>
+      <input type="button" id="apply" value="Apply filter"/>
     </div>
-    <img id="image" width="600px" height="600px"/>
-<!--
-    <video autoplay="true" id="videoElement" width="640px" height="480px"></video>
-    <script src="scripts/Video.js"></script>
--->    
+    <img id="image" width="640px" height="480px"/>
+    <video id="videoElement" width="640px" height="480px" style="display:none"></video>
     <canvas id="canvas"></canvas>
+
     <script src="scripts/Array2DHelper.js"></script>
     <script src="scripts/GreyScaleArrayHelper.js"></script>
     <script src="scripts/GaussianFilter.js"></script>
     <script src="scripts/Filter.js"></script>
     <script src="scripts/LinearFilterEdgeDetector.js"></script>
+    <script src="scripts/WebCamVideoHandler.js"></script>
     <script src="scripts/app.js"></script>
   </body>
 </html>
